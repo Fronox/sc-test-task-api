@@ -10,6 +10,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT;
+const host = process.env.HOST_NAME;
 app.use(parser.urlencoded({extended: false, limit: '50mb'}));
 app.use(parser.json());
 app.use(cors());
@@ -37,4 +38,4 @@ app.post("/api/v1/video", uploadS3.single('file'), (req, res, next) => {
     res.send("The video is uploaded!")
 });
 
-app.listen(port, () => console.log(`Api is listening on post ${port}`));
+app.listen(port, host, () => console.log(`App is listening on port ${port}`));
